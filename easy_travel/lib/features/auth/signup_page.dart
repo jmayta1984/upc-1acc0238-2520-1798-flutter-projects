@@ -1,4 +1,4 @@
-import 'package:easy_travel/signin_page.dart';
+import 'package:easy_travel/features/auth/signin_page.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {

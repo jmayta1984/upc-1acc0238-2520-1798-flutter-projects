@@ -1,4 +1,5 @@
-import 'package:easy_travel/signup_page.dart';
+import 'package:easy_travel/core/ui/theme.dart';
+import 'package:easy_travel/features/auth/signup_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+
+    final MaterialTheme theme = MaterialTheme(TextTheme());
+    return MaterialApp(
+      theme: theme.light(),
+      darkTheme: theme.dark(),
       debugShowCheckedModeBanner: false,
       home: Scaffold(body: SafeArea(child: SignupPage())),
     );
