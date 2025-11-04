@@ -1,6 +1,6 @@
+import 'package:easy_travel/core/enums/status.dart';
 import 'package:easy_travel/features/home/domain/destination.dart';
 
-enum Status { initial, loading, success, failure }
 
 enum CategoryType {
   all(label: 'All'),
