@@ -1,7 +1,7 @@
 import 'package:easy_travel/core/ui/theme.dart';
 import 'package:easy_travel/features/auth/data/auth_service.dart';
 import 'package:easy_travel/features/auth/presentation/blocs/signin_bloc.dart';
-import 'package:easy_travel/features/auth/presentation/pages/signup_page.dart';
+import 'package:easy_travel/features/auth/presentation/pages/signin_page.dart';
 import 'package:easy_travel/features/home/data/destination_service.dart';
 import 'package:easy_travel/features/home/presentation/blocs/home_bloc.dart';
 import 'package:easy_travel/features/home/presentation/blocs/home_event.dart';
@@ -32,7 +32,7 @@ class MainApp extends StatelessWidget {
         theme: theme.light(),
         darkTheme: theme.dark(),
         debugShowCheckedModeBanner: false,
-        home: Scaffold(body: SafeArea(child: SignupPage())),
+        home: SigninPage(),
       ),
     );
   }
