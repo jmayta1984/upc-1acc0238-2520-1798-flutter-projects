@@ -19,4 +19,13 @@ class Destination {
       overview: json['overview'],
     );
   }
+
+  Map<String, dynamic> toMap(){
+    return {
+      'id': id,
+      'title': title,
+      'poster_path': posterPath,
+      'overview': overview
+    };
+  }
 }
