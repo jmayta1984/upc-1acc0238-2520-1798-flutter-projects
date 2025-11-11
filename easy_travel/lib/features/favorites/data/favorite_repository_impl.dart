@@ -20,4 +20,9 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
   Future<void> insert(Destination destination) {
     return dao.insert(destination);
   }
+
+  @override
+  Future<bool> isFavorite(int id) async {
+    return dao.isFavorite(id);
+  }
 }

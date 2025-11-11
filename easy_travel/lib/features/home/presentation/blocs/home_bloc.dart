@@ -15,6 +15,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required this.favoriteRepository,
   }) : super(HomeState()) {
     on<GetDestinationsByCategory>(_getDestinationsByCategory);
+
+    on<ToggleFavorite>(_toggleFavorite);
+  }
+
+  FutureOr<void> _toggleFavorite(
+    ToggleFavorite event,
+    Emitter<HomeState> emit,
+  ) async {
+    bool isFavorite = await favoriteRepository.isFavorite(event.destination.id);
+    if (isFavorite) {
+      favoriteRepository.delete(event.destination.id);
+    } else {
+      favoriteRepository.insert(event.destination);
+    }
   }
 
   FutureOr<void> _getDestinationsByCategory(
