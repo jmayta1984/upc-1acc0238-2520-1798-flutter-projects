@@ -20,12 +20,21 @@ class Destination {
     );
   }
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'poster_path': posterPath,
-      'overview': overview
+      'overview': overview,
     };
+  }
+
+  factory Destination.fromMap(Map<String, dynamic> map) {
+    return Destination(
+      id: map['id'],
+      title: map['title'],
+      posterPath: map['poster_path'],
+      overview: map['overview'],
+    );
   }
 }
