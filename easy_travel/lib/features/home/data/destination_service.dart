@@ -7,7 +7,7 @@ import 'package:easy_travel/features/home/presentation/blocs/home_state.dart';
 import 'package:http/http.dart' as http;
 
 class DestinationService {
-  Future<List<Destination>> getDestinations({required String category}) async {
+  Future<List<Destination>> getDestinationsByCategory({required String category}) async {
     try {
       final Uri uri = Uri.parse(ApiConstants.baseUrl).replace(
         path: ApiConstants.destinationsEndpoint,
