@@ -2,6 +2,9 @@ import 'package:easy_travel/core/ui/theme.dart';
 import 'package:easy_travel/features/auth/data/auth_service.dart';
 import 'package:easy_travel/features/auth/presentation/blocs/signin_bloc.dart';
 import 'package:easy_travel/features/auth/presentation/pages/signin_page.dart';
+import 'package:easy_travel/features/favorites/data/favorite_dao.dart';
+import 'package:easy_travel/features/favorites/data/favorite_repository_impl.dart';
+import 'package:easy_travel/features/favorites/presentation/blocs/favorite_list_bloc.dart';
 import 'package:easy_travel/features/home/data/destination_service.dart';
 import 'package:easy_travel/features/home/presentation/blocs/home_bloc.dart';
 import 'package:easy_travel/features/home/presentation/blocs/home_event.dart';
@@ -27,6 +30,11 @@ class MainApp extends StatelessWidget {
                 ..add(GetDestinationsByCategory(category: CategoryType.all)),
         ),
         BlocProvider(create: (context) => SigninBloc(service: AuthService())),
+        BlocProvider(
+          create: (context) => FavoriteListBloc(
+            repository: FavoriteRepositoryImpl(dao: FavoriteDao()),
+          ),
+        ),
       ],
       child: MaterialApp(
         theme: theme.light(),
