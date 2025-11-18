@@ -3,4 +3,6 @@ class ApiConstants {
       'https://destinationapp-h4e8dvace3fqffbb.eastus-01.azurewebsites.net';
   static final destinationsEndpoint = '/api/destinations';
   static final signinEndpoint = '/api/users/login';
+  static final reviewsEndpoint = '/api/comments';
+
 }
