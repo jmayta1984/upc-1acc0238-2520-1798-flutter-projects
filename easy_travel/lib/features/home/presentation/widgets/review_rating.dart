@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ReviewRating extends StatefulWidget {
-  const ReviewRating({super.key});
+  const ReviewRating({super.key, required this.onRatingSelected});
+  final void Function(int) onRatingSelected;
 
   @override
   State<ReviewRating> createState() => _ReviewRatingState();
@@ -26,6 +27,7 @@ class _ReviewRatingState extends State<ReviewRating> {
           onPressed: () {
             setState(() {
               rating = index + 1;
+              widget.onRatingSelected(rating);
             });
           },
         ),
