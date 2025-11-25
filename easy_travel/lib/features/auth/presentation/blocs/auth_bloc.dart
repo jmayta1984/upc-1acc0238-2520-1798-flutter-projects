@@ -11,7 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> _appStarted(AppStart event, Emitter<AuthState> emit) async {
-    emit(state.copyWith(status: AuthStatus.loading));
+    Future.delayed(const Duration(seconds: 1));
     final token = await SecureStorage().read();
     emit(
       token != null
