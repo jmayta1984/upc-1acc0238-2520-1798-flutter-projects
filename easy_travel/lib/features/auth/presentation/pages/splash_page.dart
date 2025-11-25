@@ -13,14 +13,15 @@ class SplashPage extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         switch (state.status) {
-          case AuthStatus.authenticated:
-            return const MainPage();
-          case AuthStatus.unauthenticated:
-            return const SigninPage();
-          default:
+          case AuthStatus.initial:
             return Scaffold(
               body: const Center(child: CircularProgressIndicator()),
             );
+          case AuthStatus.authenticated:
+            return const MainPage(); 
+          case AuthStatus.unauthenticated:
+            return const SigninPage();
+        
         }
       },
     );
