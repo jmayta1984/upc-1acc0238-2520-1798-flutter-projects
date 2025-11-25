@@ -19,6 +19,13 @@ class FavoriteDao {
     return maps.map((map) => Destination.fromMap(map)).toList();
   }
 
+  Future<Set<int>> fetchAllIds() async {
+    Database db = await AppDatabase().database;
+    List maps =
+        await db.query('destinations', columns: ['id']);
+    return maps.map((map) => map['id'] as int).toSet();
+  }
+
   Future<bool> isFavorite(int id) async {
     Database db = await AppDatabase().database;
     List maps = await db.query(

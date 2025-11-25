@@ -20,6 +20,7 @@ class DestinationCard extends StatelessWidget {
               topRight: Radius.circular(8),
             ),
             child: Stack(
+              alignment: Alignment.topRight,
               children: [
                 Hero(
                   tag: destination.id,
@@ -31,13 +32,28 @@ class DestinationCard extends StatelessWidget {
                   ),
                 ),
 
-                IconButton(
-                  onPressed: () {
-                    context.read<HomeBloc>().add(
-                      ToggleFavorite(destination: destination),
-                    );
-                  },
-                  icon: Icon(Icons.favorite_border),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipOval(
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      color: Theme.of(  context).colorScheme.onPrimary,
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          context.read<HomeBloc>().add(
+                            ToggleFavorite(destination: destination),
+                          );
+                        },
+                        icon: Icon(
+                          destination.isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

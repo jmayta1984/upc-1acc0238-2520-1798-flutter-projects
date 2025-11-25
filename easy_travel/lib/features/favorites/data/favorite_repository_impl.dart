@@ -21,8 +21,15 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
     return dao.insert(destination);
   }
 
+  
+
   @override
   Future<bool> isFavorite(int id) async {
     return dao.isFavorite(id);
+  }
+  
+  @override
+  Future<Set<int>> fetchAllIds() {
+    return dao.fetchAllIds();
   }
 }

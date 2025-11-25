@@ -3,13 +3,31 @@ class Destination {
   final String title;
   final String posterPath;
   final String overview;
+  final bool isFavorite;
 
   Destination({
     required this.id,
     required this.title,
     required this.posterPath,
     required this.overview,
+    this.isFavorite = false,
   });
+
+  Destination copyWith({
+    int? id,
+    String? title,
+    String? posterPath,
+    String? overview,
+    bool? isFavorite,
+  }) {
+    return Destination(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      posterPath: posterPath ?? this.posterPath,
+      overview: overview ?? this.overview,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 
   factory Destination.fromJson(Map<String, dynamic> json) {
     return Destination(

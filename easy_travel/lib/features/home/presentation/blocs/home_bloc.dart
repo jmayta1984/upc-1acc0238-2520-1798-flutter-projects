@@ -25,10 +25,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     bool isFavorite = await favoriteRepository.isFavorite(event.destination.id);
     if (isFavorite) {
-      favoriteRepository.delete(event.destination.id);
+      await favoriteRepository.delete(event.destination.id);
     } else {
-      favoriteRepository.insert(event.destination);
+      await favoriteRepository.insert(event.destination);
     }
+    List<Destination> destinations = state.destinations
+        .map(
+          (destination) => destination.copyWith(
+            isFavorite: destination.id == event.destination.id
+                ? !isFavorite
+                : destination.isFavorite,
+          ),
+        )
+        .toList();
+    emit(state.copyWith(status: Status.success, destinations: destinations));
   }
 
   FutureOr<void> _getDestinationsByCategory(
@@ -47,6 +57,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       List<Destination> destinations = await destinationRepository
           .getDestinationsByCategory(event.category.label);
+      Set<int> favoriteIds = await favoriteRepository.fetchAllIds();
+
+      destinations = destinations
+          .map(
+            (destination) => destination.copyWith(
+              isFavorite: favoriteIds.contains(destination.id),
+            ),
+          )
+          .toList();
       emit(state.copyWith(status: Status.success, destinations: destinations));
     } catch (e) {
       emit(state.copyWith(status: Status.failure, message: e.toString()));

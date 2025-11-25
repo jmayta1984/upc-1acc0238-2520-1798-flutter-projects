@@ -5,4 +5,5 @@ abstract class FavoriteRepository {
   Future<void> delete(int id);
   Future<List<Destination>> fetchAll();
   Future<bool> isFavorite(int id);
+  Future<Set<int>> fetchAllIds();
 }
